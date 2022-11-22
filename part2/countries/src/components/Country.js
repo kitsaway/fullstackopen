@@ -1,3 +1,5 @@
+import Weather from "./Weather";
+
 const Country = ({
   country: {
     name: { common },
@@ -6,6 +8,7 @@ const Country = ({
     languages,
     flags: { png },
   },
+  weather,
 }) => (
   <>
     <h1>{common}</h1>
@@ -23,6 +26,7 @@ const Country = ({
       ))}
     </ul>
     <img src={png} alt={`${common}'s flag`} width="250" height="200" />
+    <Weather weather={weather} />
   </>
 );
 
