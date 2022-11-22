@@ -1,4 +1,4 @@
-const Persons = ({ persons }) => (
+const Persons = ({ persons, handleDelete }) => (
   <>
     <table>
       <tbody>
@@ -6,6 +6,7 @@ const Persons = ({ persons }) => (
           <tr key={person.id}>
             <td>{person.name}</td>
             <td>{person.number}</td>
+            <td><button onClick={() => handleDelete(person.id, person.name)}>delete</button></td>
           </tr>
         ))}
       </tbody>
