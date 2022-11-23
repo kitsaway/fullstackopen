@@ -1,8 +1,15 @@
+const { json } = require("express");
 const express = require("express");
 
 const app = express();
-const PORT = 3001;
+const morgan = require("morgan");
+const logger = morgan.token("data", function (req, res) {
+  return JSON.stringify(res.body);
+});
 
+const PORT = 3001;
+app.use(morgan("tiny"));
+app.use(logger("data"));
 app.use(express.json());
 
 let persons = [
