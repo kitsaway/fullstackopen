@@ -1,13 +1,16 @@
 const { json } = require("express");
 const express = require("express");
+const cors = require("cors");
 
 const app = express();
+
+app.use(cors());
+
 const morgan = require("morgan");
 const logger = morgan.token("data", function (req, res) {
   return JSON.stringify(res.body);
 });
 
-const PORT = 3001;
 app.use(morgan("tiny"));
 app.use(logger("data"));
 app.use(express.json());
@@ -34,6 +37,8 @@ let persons = [
     number: "39-23-6423122",
   },
 ];
+
+app.use(express.static("build"));
 
 app.get("/api/persons", (request, response) => {
   response.json(persons);
@@ -80,6 +85,9 @@ app.get("/info", (request, response) => {
   `;
   response.send(htmlTemplate);
 });
+
+
+const PORT = process.env.PORT || 3001;
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
