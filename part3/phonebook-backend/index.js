@@ -66,7 +66,7 @@ app.post("/api/persons", (request, response) => {
     response.status(400).send({ error: "name or number is empty" });
   } else {
     persons = [...persons, newPerson];
-    response.json(persons);
+    response.json(newPerson);
   }
 });
 
